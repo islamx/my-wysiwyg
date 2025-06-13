@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# WYSIWYG Editor Component
 
-## Getting Started
+A modern, reusable WYSIWYG editor component built with React and Draft.js. This component supports both controlled and uncontrolled modes, with a customizable toolbar and modern styling.
 
-First, run the development server:
+## Features
+
+- ✨ Controlled and uncontrolled modes
+- 🎨 Customizable toolbar
+- 💅 Modern styling with CSS variables
+- 📝 Basic formatting (bold, italic, underline)
+- 🔄 Async content loading/saving
+- 🎯 TypeScript support
+
+## Installation
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Basic Usage
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```tsx
+import WysiwygEditor from './components/WysiwygEditor';
+import { EditorState } from 'draft-js';
 
-## Learn More
+// Controlled mode
+const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
 
-To learn more about Next.js, take a look at the following resources:
+<WysiwygEditor
+  value={editorState}
+  onChange={setEditorState}
+  minHeight={400}
+/>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+// Uncontrolled mode
+<WysiwygEditor
+  onContentChange={(state) => console.log(state)}
+  minHeight={400}
+/>
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Custom Toolbar
 
-## Deploy on Vercel
+```tsx
+const CustomToolbar = ({ editorState, onChange }) => (
+  <div className="my-toolbar">
+    {/* Your custom toolbar buttons */}
+  </div>
+);
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<WysiwygEditor
+  renderToolbar={(props) => <CustomToolbar {...props} />}
+  minHeight={400}
+/>
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| value | EditorState | No | - | Editor state for controlled mode |
+| onChange | (state: EditorState) => void | No | - | Called when content changes in controlled mode |
+| onContentChange | (state: EditorState) => void | No | - | Called when content changes in uncontrolled mode |
+| minHeight | number | No | 400 | Minimum height of the editor in pixels |
+| className | string | No | - | Additional CSS class name |
+| style | CSSProperties | No | - | Additional inline styles |
+| renderToolbar | (props: ToolbarProps) => ReactNode | No | - | Custom toolbar render function |
+
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Run tests
+npm test
+
+# Build for production
+npm run build
+```
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── WysiwygEditor/
+│   │   ├── index.tsx              # Main component
+│   │   ├── styles.module.scss     # Editor styles
+│   │   ├── Toolbar/              # Toolbar component
+│   │   └── types.ts              # Type definitions
+│   └── Button/                   # Button component
+├── styles/                       # Global styles
+├── utils/                        # Utility functions
+└── app/                         # Demo application
+```
+
+## License
+
+MIT

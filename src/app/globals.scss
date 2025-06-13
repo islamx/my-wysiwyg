@@ -1,0 +1,48 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: map-get($font-families, 'sans');
+  background-color: map-get(map-get($colors, 'background'), 'light');
+  color: map-get(map-get($colors, 'neutral'), '900');
+}
+
+a {
+  color: map-get(map-get($colors, 'primary'), 'base');
+  text-decoration: none;
+  @include transition(color);
+
+  &:hover {
+    color: map-get(map-get($colors, 'primary'), 'dark');
+  }
+}
+
+button {
+  font-family: inherit;
+}
+
+// Reset focus styles for mouse users
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+// Custom focus styles for keyboard users
+:focus-visible {
+  outline: 2px solid map-get(map-get($colors, 'primary'), 'base');
+  outline-offset: 2px;
+}
+
+// Selection styles
+::selection {
+  background-color: rgba(map-get(map-get($colors, 'primary'), 'base'), 0.2);
+  color: map-get(map-get($colors, 'neutral'), '900');
+} 

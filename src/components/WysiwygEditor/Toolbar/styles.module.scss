@@ -1,0 +1,9 @@
+.toolbar {
+  display: flex;
+  gap: var(--spacing-2);
+  padding: var(--spacing-2);
+  border-bottom: 1px solid var(--color-border-base);
+  background-color: var(--color-background-base);
+  border-top-left-radius: var(--border-radius-md);
+  border-top-right-radius: var(--border-radius-md);
+} 

@@ -1,0 +1,92 @@
+// Colors
+$colors: (
+  'primary': (
+    'light': #4299e1,
+    'base': #3182ce,
+    'dark': #2b6cb0
+  ),
+  'neutral': (
+    '100': #f7fafc,
+    '200': #edf2f7,
+    '300': #e2e8f0,
+    '400': #cbd5e0,
+    '500': #a0aec0,
+    '600': #718096,
+    '700': #4a5568,
+    '800': #2d3748,
+    '900': #1a202c
+  ),
+  'background': (
+    'light': #f8fafc,
+    'base': #ffffff,
+    'dark': #edf2f7
+  ),
+  'border': (
+    'light': #e2e8f0,
+    'base': #cbd5e0,
+    'dark': #a0aec0
+  )
+);
+
+// Typography
+$font-families: (
+  'sans': (-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif),
+  'mono': (ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace)
+);
+
+$font-sizes: (
+  'base': 1rem,     // 16px
+  'lg': 1.125rem,   // 18px
+  'xl': 1.25rem,    // 20px
+  '4xl': 2.25rem    // 36px
+);
+
+$font-weights: (
+  'normal': 400,
+  'medium': 500,
+  'semibold': 600,
+  'bold': 700
+);
+
+// Spacing
+$spacing: (
+  '0': 0,
+  '1': 0.25rem,   // 4px
+  '2': 0.5rem,    // 8px
+  '3': 0.75rem,   // 12px
+  '4': 1rem,      // 16px
+  '6': 1.5rem,    // 24px
+  '8': 2rem       // 32px
+);
+
+// Breakpoints
+$breakpoints: (
+  'sm': 640px,
+  'md': 768px,
+  'lg': 1024px,
+  'xl': 1280px,
+  '2xl': 1536px
+);
+
+// Border radius
+$border-radius: (
+  'base': 0.25rem, // 4px
+  'lg': 0.5rem,    // 8px
+  'full': 9999px
+);
+
+// Shadows
+$shadows: (
+  'sm': 0 1px 2px 0 rgba(0, 0, 0, 0.05),
+  'base': 0 1px 3px 0 rgba(0, 0, 0, 0.1)
+);
+
+// Transitions
+$transitions: (
+  'base': 200ms
+);
+
+// Z-index
+$z-index: (
+  'base': 1
+); 
