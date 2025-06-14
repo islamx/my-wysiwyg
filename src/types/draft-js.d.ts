@@ -3,12 +3,32 @@ declare module 'draft-js' {
 
   export class EditorState {
     static createEmpty(): EditorState;
+    static createWithContent(content: ContentState): EditorState;
+    static push(editorState: EditorState, contentState: ContentState, changeType: string): EditorState;
     getCurrentContent(): ContentState;
     getCurrentInlineStyle(): DraftInlineStyle;
+    getSelection(): SelectionState;
   }
 
   export class ContentState {
     getPlainText(): string;
+    merge(properties: { text: string }): ContentState;
+  }
+
+  export class SelectionState {
+    getStartKey(): string;
+    getEndKey(): string;
+    getStartOffset(): number;
+    getEndOffset(): number;
+    isCollapsed(): boolean;
+  }
+
+  export class Modifier {
+    static replaceText(
+      contentState: ContentState,
+      selectionState: SelectionState,
+      text: string
+    ): ContentState;
   }
 
   export type DraftInlineStyle = Set<string>;

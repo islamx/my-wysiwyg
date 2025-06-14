@@ -5,6 +5,8 @@ import WysiwygEditor from "../components/WysiwygEditor";
 import { EditorState, ContentState } from "draft-js";
 import { loadContent, saveContent } from "../utils/fakeApi";
 import Button from "../components/Button/Button";
+import TextFormattingToolbar from "../components/TextFormattingToolbar";
+import { ToolbarProps } from "../components/WysiwygEditor/Toolbar/types";
 import styles from './page.module.scss';
 
 export default function Home() {
@@ -105,6 +107,7 @@ export default function Home() {
             onContentChange={!isControlled ? setUncontrolledState : undefined}
             className={styles.editor}
             minHeight={200}
+            renderToolbar={(props: ToolbarProps) => <TextFormattingToolbar {...props} />}
           />
 
           <Button
