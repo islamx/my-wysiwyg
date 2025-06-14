@@ -13,15 +13,18 @@ export default function Home() {
   const [isControlled, setIsControlled] = useState(true);
   const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
   const [uncontrolledState, setUncontrolledState] = useState<EditorState | null>(null);
+  const [loading, setLoading] = useState(true);
 
   // Load initial content
   useEffect(() => {
+    setLoading(true);
     loadContent().then((content) => {
       if (isControlled) {
         setEditorState(content);
       } else {
         setUncontrolledState(content);
       }
+      setLoading(false);
     });
   }, [isControlled]); // Re-run when mode changes
 
@@ -101,23 +104,30 @@ export default function Home() {
               : "Editor is in uncontrolled mode. State is managed internally by the editor component."}
           </p>
           
-          <WysiwygEditor
-            value={isControlled ? editorState : undefined}
-            onChange={isControlled ? setEditorState : undefined}
-            onContentChange={!isControlled ? setUncontrolledState : undefined}
-            className={styles.editor}
-            minHeight={200}
-            renderToolbar={(props: ToolbarProps) => <TextFormattingToolbar {...props} />}
-          />
-
-          <Button
-            variant="primary"
-            size="large"
-            onClick={handleSave}
-            className={styles.saveButton}
-          >
-            Save Content
-          </Button>
+          {loading ? (
+            <div style={{ textAlign: "center", padding: "2rem", color: "#64748b", fontStyle: "italic" }}>
+              Loading...
+            </div>
+          ) : (
+            <>
+              <WysiwygEditor
+                value={isControlled ? editorState : undefined}
+                onChange={isControlled ? setEditorState : undefined}
+                onContentChange={!isControlled ? setUncontrolledState : undefined}
+                className={styles.editor}
+                minHeight={200}
+                renderToolbar={(props: ToolbarProps) => <TextFormattingToolbar {...props} />}
+              />
+              <Button
+                variant="primary"
+                size="large"
+                onClick={handleSave}
+                className={styles.saveButton}
+              >
+                Save Content
+              </Button>
+            </>
+          )}
         </div>
 
         <div className={styles.previewSection}>
