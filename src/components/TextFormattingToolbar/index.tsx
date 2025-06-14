@@ -22,13 +22,19 @@ const TextFormattingToolbar: React.FC<ToolbarProps> = ({ editorState, onChange }
   const handleUppercase = () => {
     const content = editorState.getCurrentContent();
     const selection = editorState.getSelection();
-    const text = content.getPlainText();
-    const newContent = Modifier.replaceText(
-      content,
-      selection,
-      text.toUpperCase()
+    const selectedText = content.getPlainText().slice(
+      selection.getStartOffset(),
+      selection.getEndOffset()
     );
-    onChange(EditorState.push(editorState, newContent, 'change-inline-style'));
+    
+    if (selectedText) {
+      const newContent = Modifier.replaceText(
+        content,
+        selection,
+        selectedText.toUpperCase()
+      );
+      onChange(EditorState.push(editorState, newContent, 'change-inline-style'));
+    }
   };
 
   return (
@@ -37,7 +43,7 @@ const TextFormattingToolbar: React.FC<ToolbarProps> = ({ editorState, onChange }
         <Button
           variant="icon"
           onClick={() => toggleInlineStyle('BOLD')}
-          isActive={isActive('BOLD')}
+          data-active={isActive('BOLD')}
           aria-label="Bold"
           className={styles.toolbarButton}
         >
@@ -46,7 +52,7 @@ const TextFormattingToolbar: React.FC<ToolbarProps> = ({ editorState, onChange }
         <Button
           variant="icon"
           onClick={() => toggleInlineStyle('ITALIC')}
-          isActive={isActive('ITALIC')}
+          data-active={isActive('ITALIC')}
           aria-label="Italic"
           className={styles.toolbarButton}
         >
@@ -55,7 +61,7 @@ const TextFormattingToolbar: React.FC<ToolbarProps> = ({ editorState, onChange }
         <Button
           variant="icon"
           onClick={() => toggleInlineStyle('UNDERLINE')}
-          isActive={isActive('UNDERLINE')}
+          data-active={isActive('UNDERLINE')}
           aria-label="Underline"
           className={styles.toolbarButton}
         >
