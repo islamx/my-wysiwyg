@@ -1,6 +1,10 @@
-# WYSIWYG Editor Demo
+# WYSIWYG Editor
 
-A Next.js application showcasing a WYSIWYG editor built with draft-js, featuring both controlled and uncontrolled modes, and a live content preview.
+A modern rich text editor built with draft-js and Next.js, supporting both controlled and uncontrolled modes.
+
+## 🚀 Live Demo
+
+Check out the live demo at [https://my-wysiwyg.vercel.app/](https://my-wysiwyg.vercel.app/)
 
 ## Features
 
