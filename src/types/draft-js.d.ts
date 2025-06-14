@@ -11,6 +11,7 @@ declare module 'draft-js' {
   }
 
   export class ContentState {
+    static createFromText(text: string): ContentState;
     getPlainText(): string;
     merge(properties: { text: string }): ContentState;
   }
